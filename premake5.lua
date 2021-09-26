@@ -1,5 +1,6 @@
 workspace "Glowc"
 architecture "X64"
+startproject "Sandbox"
 
 configurations
 {
@@ -83,7 +84,7 @@ project "glad"
 
 	includedirs
 	{
-		"%{prj.location}/include/glad/"
+		"%{prj.location}/include/"
 	}
 
 	filter "system:windows"
@@ -99,7 +100,7 @@ project "glad"
 
 project "glowc"
 	location "glowc"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
@@ -115,7 +116,7 @@ project "glowc"
 
 	includedirs
 	{
-		"%{prj.name}/include/%{prj.name}"
+		"%{prj.name}/include/"
 	}
 
 	links
@@ -151,9 +152,14 @@ project "Sandbox"
 		"%{prj.name}/src/**.cpp"
 	}
 
+	defines
+	{
+		"GLFW_INCLUDE_NONE"
+	}
+
 	includedirs
 	{
-		"glowc/include/glowc",
+		"glowc/include/",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}"
